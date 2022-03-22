@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Graphical Representation of Technical Operations Statistics">
+    <!--Bootstrap elements authored by: Mark Otto, Jacob Thornton, and Bootstrap contributors-->
+    <meta name="author" content="Rich Gude, Contractor, Booz Allen Hamilton">
+    <meta name="generator" content="Hugo 0.80.0">
+    <title>Ongoing Technical Operations</title>
+    <!--Define FavIcon: freely sourced from: https://www.websiteplanet.com/webtools/favicon-generator/ -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon.png">
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/dist/css/feather.css" rel="stylesheet" type="text/css">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="./assets/dist/css/dashboard.css" rel="stylesheet">
+  </head>
+  <body style='padding-bottom: 50px' data-spy="scroll" data-target="#sidebarMenu" data-offset="0" tabindex='0'>
+
+  
+    
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">XXXXXXX</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="#">Back to SharePoint</a>
+    </li>
+  </ul>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#OngoingOps">
+              <span class="feather-users"></span>
+              Ongoing Ops
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#UpcomOps">
+              <span class="feather-layers"></span>
+              Upcoming Ops
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#ComplOps">
+              <span class="feather-file"></span>
+              Complete Ops
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#TechOpsStats">
+              <span class="feather-bar-chart-2"></span>
+              Tech Ops Stats
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ONGOING REPORTS SECTION -->
+    <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div id='OngoingOps'></div>
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div><h1 class="h2" id='ongoing_title'>Ongoing Technical Operations:</h1></div>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <button type="button" class="btn btn-sm btn-outline-secondary" id='calen_ongoing'>
+            <span class="feather-calendar"></span>
+          </button>
+        </div>
+      </div>
+
+      <div id='op_cards' class="row row-cols-1 row-cols-md-3 g-4"></div>
+      <div id='UpcomOps'></div>
+
+      <!-- UPCOMING REPORTS SECTION -->
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-top border-bottom" style='margin-top: 60px'>
+        <div><h1 class="h2" id='upcoming_title'>Upcoming Technical Operations:</h1></div>
+      </div>
+
+      <div id='upcom_cards' class="row row-cols-1 row-cols-md-3 g-4"></div>
+      <div id='ComplOps'></div>
+
+      <!-- COMPLETED REPORTS SECTION -->
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-top border-bottom" style='margin-top: 60px'>
+        <div><h1 class="h2" id='compl_title'>Completed Technical Operations:</h1></div>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <button type="button" class="btn btn-sm btn-outline-secondary" id='calen_compl'>
+            <span class="feather-calendar"></span>
+          </button>
+        </div>
+      </div>
+
+      <div id='compl_cards' class="row row-cols-1 row-cols-md-3 g-4"></div>
+      <div id='TechOpsStats'></div>
+
+      <!-- TECHNICAL REPORT STATISTICS SECTION -->
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-top border-bottom" style='margin-top: 60px'>
+        <div><h1 class="h2" id='stat_title'>Technical Operations Statistics:</h1></div>
+      </div>
+
+      <!-- View Data in interactive graph -->
+      <canvas id='stat_chart' width='400' height='200' style='margin-bottom: 40px'></canvas>
+
+
+      <!-- View data in tabular form -->
+      <h2>Tabular Technical Operations Data</h2>
+      <div class="table-responsive" style="overflow-x:auto;">
+        <table class="table table-striped table-sm" id='tech_table'>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer mt-auto py-3 bg-light border-top text-center" style='position: relative; bottom: -50px'>
+  <div class="container">
+    <span>Please see XXXXXXXXXXXX for more Technical Operations Support</span>
+  </div>
+</footer>
+
+<script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="./assets/dist/js/Chart.min.js"></script>
+<script src="./assets/dist/js/jquery.min.js"></script>
+<script src="./javascript/ongoing_ops.js"></script>
+<script src="./javascript/tech_ops_stats.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('body').scrollspy({
+      target: '#sidebarMenu',
+      offset: 40
+    })
+  })
+</script>
+    
+
+</body>
+  
+</html>
